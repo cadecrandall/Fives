@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/cade/Desktop/Fives/Gameboard.h
+vector
+-
+Tile.h
+/Users/cade/Desktop/Fives/Tile.h
+
+/Users/cade/Desktop/Fives/Tile.h
+
+/Users/cade/Desktop/Fives/main.cpp
+iostream
+-
+cstdlib
+-
+ctime
+-
+fstream
+-
+Gameboard.h
+/Users/cade/Desktop/Fives/Gameboard.h
+Tile.h
+/Users/cade/Desktop/Fives/Tile.h
+
