@@ -24,7 +24,7 @@ public:
     void displayGame();
     void newTile();
 private:
-    Tile _board[4][4];
+    vector<vector<Tile>> _board; //make a vector of vectors of Tiles
     int _currentScore = 0;
     int _bestScore = -1;
 };

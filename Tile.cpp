@@ -12,6 +12,11 @@ Tile::Tile() {      // tile default constructor
     _currentValue = ((rand() / static_cast<double>(RAND_MAX)) < 0.9 ? 5 : 25);
 }
 
+Tile::Tile(int val) {       // tile constructor that can have a predetermined value (usually 0 for removing zeroes in merge moves)
+    _currentValue = val;
+
+}
+
 void Tile::updateTileValue() {
 
 }
@@ -38,4 +43,8 @@ int Tile::getCurrentVal() {
 
 void Tile::setCurrentVal(int newVal) {
     _currentValue = newVal;
+}
+
+void Tile::setCurrentVal() {        // if called without argument, multiplies current Tile value by 5
+    _currentValue *= 5;
 }

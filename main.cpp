@@ -35,7 +35,13 @@ int main() {
     gb.displayGame();
 
     while (!gb.isGameOver()) {
-
+        char userMove;
+        cin >> userMove;
+        if (userMove == 'W' || userMove == 'w') {
+            gb.moveUp();
+        }
+        gb.newTile();
+        gb.displayGame();
     }
 
 

@@ -9,6 +9,7 @@
 class Tile {
 public:
     Tile();         // default constructor
+    Tile(int val);
     void updateTileValue();     // updates tile value when merged
     void tileColor();           // updates tile color when merged
     bool setNeighborTiles();    // checks to see if tile can move after each move
@@ -16,6 +17,7 @@ public:
     void delTile();     // deletes tile when merged
     int getCurrentVal();
     void setCurrentVal(int newVal);
+    void setCurrentVal();
 private:
     int _currentValue = 0;
     int _color;
