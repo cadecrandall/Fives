@@ -48,6 +48,33 @@ void Gameboard::moveDown() {
 }
 
 void Gameboard::moveRight() {
+    for (int r = 0; r < 4; r++) {
+        for (int c = 0; c < 4; c++) {      // has to work from bottom to avoid double checking
+            if (_board.at(r).at(c).getCurrentVal() == 0) {
+                _board.at(r).erase(_board.at(r).begin() + c);       // erases Tiles that hold the value 0
+                _board.at(r).insert(_board.at(r).begin(), Tile(0));
+            }
+        }
+    }
+
+    for (int r = 0; r < 4; r++) {
+        for (int c = 3; c > 0; c--) {
+            if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c-1).getCurrentVal()) {
+                // if tiles are equal (horizontally), merge
+                _board.at(r).at(c).setCurrentVal(); // multiplies Tile by 5
+                _board.at(r).at(c-1).setCurrentVal(0);  // sets lower tile to 0
+            }
+        }
+    }
+
+    for (int r = 0; r < 4; r++) {
+        for (int c = 0; c < 4; c++) {      // has to work from bottom to avoid double checking
+            if (_board.at(r).at(c).getCurrentVal() == 0) {
+                _board.at(r).erase(_board.at(r).begin() + c);       // erases Tiles that hold the value 0
+                _board.at(r).insert(_board.at(r).begin(), Tile(0));
+            }
+        }
+    }
 
 }
 

@@ -39,6 +39,8 @@ int main() {
         cin >> userMove;
         if (userMove == 'A' || userMove == 'a') {
             gb.moveLeft();
+        } else if(userMove == 'D' || userMove == 'd') {
+            gb.moveRight();
         }
         gb.newTile();
         gb.displayGame();
