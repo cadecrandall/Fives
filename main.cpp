@@ -37,8 +37,8 @@ int main() {
     while (!gb.isGameOver()) {
         char userMove;
         cin >> userMove;
-        if (userMove == 'W' || userMove == 'w') {
-            gb.moveUp();
+        if (userMove == 'A' || userMove == 'a') {
+            gb.moveLeft();
         }
         gb.newTile();
         gb.displayGame();

@@ -40,33 +40,7 @@ void Gameboard::moveUp() {
      * 2. merge tiles up (starting at the top)
      * 3. remove blanks from each column created from merge
      */
-    for (int r = 3; r >= 0; r--) {
-        for (int c = 0; c < 4; c++) {      // has to work from bottom to avoid double checking
-            if (_board.at(r).at(c).getCurrentVal() == 0) {
-                _board.at(r).erase(_board.at(r).begin() + c);       // erases Tiles that hold the value 0
-                _board.at(r).push_back(Tile(0));
-            }
-        }
-    }
 
-    for (int r = 0; r < 3; r++) {
-        for (int c = 0; c < 4; c++) {
-            if (_board.at(r).at(c).getCurrentVal() == _board.at(r+1).at(c).getCurrentVal()) {
-                // if tiles are equal (vertically), merge
-                _board.at(r).at(c).setCurrentVal(); // multiplies Tile by 5
-                _board.at(r+1).at(c).setCurrentVal(0);  // sets lower tile to 0
-            }
-        }
-    }
-
-    for (int r = 3; r >= 0; r--) {
-        for (int c = 0; c < 4; c++) {      // has to work from bottom to avoid double checking
-            if (_board.at(r).at(c).getCurrentVal() == 0) {
-                _board.at(r).erase(_board.at(r).begin() + c);       // erases Tiles that hold the value 0
-                _board.at(r).push_back(Tile(0));
-            }
-        }
-    }
 }
 
 void Gameboard::moveDown() {
@@ -78,6 +52,34 @@ void Gameboard::moveRight() {
 }
 
 void Gameboard::moveLeft() {
+    for (int r = 0; r < 4; r++) {
+        for (int c = 3; c >= 0; c--) {      // has to work from bottom to avoid double checking
+            if (_board.at(r).at(c).getCurrentVal() == 0) {
+                _board.at(r).erase(_board.at(r).begin() + c);       // erases Tiles that hold the value 0
+                _board.at(r).push_back(Tile(0));
+                displayGame();
+            }
+        }
+    }
+
+    for (int r = 0; r < 4; r++) {
+        for (int c = 0; c < 3; c++) {
+            if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c+1).getCurrentVal()) {
+                // if tiles are equal (horizontally), merge
+                _board.at(r).at(c).setCurrentVal(); // multiplies Tile by 5
+                _board.at(r).at(c+1).setCurrentVal(0);  // sets lower tile to 0
+            }
+        }
+    }
+
+    for (int r = 0; r < 4; r++) {
+        for (int c = 3; c >= 0; c--) {      // has to work from bottom to avoid double checking
+            if (_board.at(r).at(c).getCurrentVal() == 0) {
+                _board.at(r).erase(_board.at(r).begin() + c);       // erases Tiles that hold the value 0
+                _board.at(r).push_back(Tile(0));
+            }
+        }
+    }
 
 }
 
