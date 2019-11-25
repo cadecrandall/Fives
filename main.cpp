@@ -35,7 +35,19 @@ int main() {
     gb.displayGame();
 
     while (!gb.isGameOver()) {
-
+        char userMove;
+        cin >> userMove;
+        if (userMove == 'A' || userMove == 'a') {
+            gb.moveLeft();
+        } else if(userMove == 'D' || userMove == 'd') {
+            gb.moveRight();
+        } else if (userMove == 'W' || userMove == 'w') {
+            gb.moveUp();
+        } else if (userMove == 'S' || userMove == 's') {
+            gb.moveDown();
+        }
+        gb.newTile();
+        gb.displayGame();
     }
 
 
