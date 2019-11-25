@@ -19,37 +19,55 @@ Gameboard::Gameboard() {
         _board.push_back(row);
         for (int c = 0; c < 4; ++c) {
             Tile col;
+            col.setCurrentVal(0);
             _board.at(r).push_back(col);
-        }
-    }
-    for (int r = 0; r < 4; r++) {           // fills 2d vector with 0s
-        for (int c = 0; c < 4; c++) {
-            _board.at(r).at(c).setCurrentVal(0);
         }
     }
     newTile();      // creates two random tiles to start game
     newTile();
 }
 
-void Gameboard::merge() {
-
+void Gameboard::moveUp() { // moving up is the same as rotating clockwise and merging right, then rotating anticlockwise
+    rotateClockwise();
+    moveRight();
+    rotateAntiClock();
 }
 
-void Gameboard::moveUp() {
-    /* 1. remove blanks from each column (so everything will be touching)
-     * 2. merge tiles up (starting at the top)
-     * 3. remove blanks from each column created from merge
-     */
-
+void Gameboard::moveDown() { // moving down is the same as rotating clockwise, merging left, and rotating anticlockwise
+    rotateClockwise();
+    moveLeft();
+    rotateAntiClock();
 }
 
-void Gameboard::moveDown() {
+void Gameboard::rotateClockwise() {
+    Gameboard newBoard; // create a temporary board
+    for (int r = 0; r < 4; r++) {
+        for (int c = 0; c < 4; c++) {
+            newBoard._board.at(c).at(3-r).setCurrentVal(_board.at(r).at(c).getCurrentVal());
+            // rotates the board clockwise
+        }
+    }
+    _board = newBoard._board; // sets the callee board to the newboard
+}
 
+void Gameboard::rotateAntiClock() {
+    Gameboard newBoard; // create a temporary board
+    for (int r = 0; r < 4; r++) {
+        for (int c = 0; c < 4; c++) {
+            newBoard._board.at(r).at(c).setCurrentVal(_board.at(c).at(3-r).getCurrentVal());
+            // rotates the board clockwise
+        }
+    }
+    _board = newBoard._board; // sets the callee board to the newboard
 }
 
 void Gameboard::moveRight() {
+    /* 1. remove blanks from each row (so everything will be touching)
+     * 2. merge tiles right
+     * 3. remove blanks from each row created from merge
+     */
     for (int r = 0; r < 4; r++) {
-        for (int c = 0; c < 4; c++) {      // has to work from bottom to avoid double checking
+        for (int c = 0; c < 4; c++) {      // has to work from left side to avoid double checking
             if (_board.at(r).at(c).getCurrentVal() == 0) {
                 _board.at(r).erase(_board.at(r).begin() + c);       // erases Tiles that hold the value 0
                 _board.at(r).insert(_board.at(r).begin(), Tile(0));
@@ -62,13 +80,14 @@ void Gameboard::moveRight() {
             if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c-1).getCurrentVal()) {
                 // if tiles are equal (horizontally), merge
                 _board.at(r).at(c).setCurrentVal(); // multiplies Tile by 5
+                _currentScore += _board.at(r).at(c).getCurrentVal();
                 _board.at(r).at(c-1).setCurrentVal(0);  // sets lower tile to 0
             }
         }
     }
 
     for (int r = 0; r < 4; r++) {
-        for (int c = 0; c < 4; c++) {      // has to work from bottom to avoid double checking
+        for (int c = 0; c < 4; c++) {      // has to work from left side to avoid double checking
             if (_board.at(r).at(c).getCurrentVal() == 0) {
                 _board.at(r).erase(_board.at(r).begin() + c);       // erases Tiles that hold the value 0
                 _board.at(r).insert(_board.at(r).begin(), Tile(0));
@@ -79,12 +98,15 @@ void Gameboard::moveRight() {
 }
 
 void Gameboard::moveLeft() {
+    /* 1. remove blanks from each row (so everything will be touching)
+     * 2. merge tiles left
+     * 3. remove blanks from each row created from merge
+     */
     for (int r = 0; r < 4; r++) {
-        for (int c = 3; c >= 0; c--) {      // has to work from bottom to avoid double checking
+        for (int c = 3; c >= 0; c--) {      // has to work from right side to avoid double checking
             if (_board.at(r).at(c).getCurrentVal() == 0) {
                 _board.at(r).erase(_board.at(r).begin() + c);       // erases Tiles that hold the value 0
-                _board.at(r).push_back(Tile(0));
-                displayGame();
+                _board.at(r).push_back(Tile(0)); // inserts a new tile at the right side of value 0
             }
         }
     }
@@ -94,32 +116,24 @@ void Gameboard::moveLeft() {
             if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c+1).getCurrentVal()) {
                 // if tiles are equal (horizontally), merge
                 _board.at(r).at(c).setCurrentVal(); // multiplies Tile by 5
+                _currentScore += _board.at(r).at(c).getCurrentVal();
                 _board.at(r).at(c+1).setCurrentVal(0);  // sets lower tile to 0
             }
         }
     }
 
     for (int r = 0; r < 4; r++) {
-        for (int c = 3; c >= 0; c--) {      // has to work from bottom to avoid double checking
+        for (int c = 3; c >= 0; c--) {      // has to work from right side to avoid double checking
             if (_board.at(r).at(c).getCurrentVal() == 0) {
                 _board.at(r).erase(_board.at(r).begin() + c);       // erases Tiles that hold the value 0
                 _board.at(r).push_back(Tile(0));
             }
         }
     }
-
-}
-
-bool Gameboard::isMoveLegal() {
-    return false;
 }
 
 bool Gameboard::isGameOver() {
     return false;
-}
-
-void Gameboard::updateScore() {
-
 }
 
 void Gameboard::displayGame() {
