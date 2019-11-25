@@ -17,23 +17,7 @@ Tile::Tile(int val) {       // tile constructor that can have a predetermined va
 
 }
 
-void Tile::updateTileValue() {
-
-}
-
 void Tile::tileColor() {
-
-}
-
-bool Tile::setNeighborTiles() {
-    return false;
-}
-
-bool Tile::getNeighborTiles() const {
-    return false;
-}
-
-void Tile::delTile() {
 
 }
 

@@ -66,6 +66,7 @@ void Gameboard::moveRight() {
      * 2. merge tiles right
      * 3. remove blanks from each row created from merge
      */
+
     for (int r = 0; r < 4; r++) {
         for (int c = 0; c < 4; c++) {      // has to work from left side to avoid double checking
             if (_board.at(r).at(c).getCurrentVal() == 0) {
@@ -94,7 +95,6 @@ void Gameboard::moveRight() {
             }
         }
     }
-
 }
 
 void Gameboard::moveLeft() {
@@ -102,6 +102,7 @@ void Gameboard::moveLeft() {
      * 2. merge tiles left
      * 3. remove blanks from each row created from merge
      */
+
     for (int r = 0; r < 4; r++) {
         for (int c = 3; c >= 0; c--) {      // has to work from right side to avoid double checking
             if (_board.at(r).at(c).getCurrentVal() == 0) {
@@ -132,8 +133,52 @@ void Gameboard::moveLeft() {
     }
 }
 
-bool Gameboard::isGameOver() {
+bool Gameboard::canMoveVert() {
+    rotateClockwise();
+    if (canMoveLeft() || canMoveRight()) {
+        rotateAntiClock();
+        return true;
+    }
     return false;
+}
+
+
+bool Gameboard::canMoveRight() {
+    // function checks to see if anything matches and is movable when the board is full
+    for (int r = 0; r < 4; r++) {
+        for (int c = 3; c > 0; c--) {
+            if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c-1).getCurrentVal()) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool Gameboard::canMoveLeft() {
+    for (int r = 0; r < 4; r++) {
+        for (int c = 0; c < 3; c++) {
+            if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c+1).getCurrentVal()) {
+                // if tiles are equal (horizontally), return true
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool Gameboard::isGameOver() {
+    int countZeroes = 0;
+    for (int r = 0; r < 4; r++) {
+        for (int c = 0; c < 4; c++) {
+            if (_board.at(r).at(c).getCurrentVal() == 0)
+                countZeroes++;
+        }
+    }
+
+    if (countZeroes == 0 && (canMoveLeft() || canMoveRight() || canMoveVert())) {
+        return true;
+    }
 }
 
 void Gameboard::displayGame() {
