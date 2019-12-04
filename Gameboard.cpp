@@ -170,6 +170,11 @@ bool Gameboard::canMoveLeft() {
 }
 
 bool Gameboard::isGameOver() {
+    return countZeroes() == 0 && !(canMoveLeft() || canMoveRight() || canMoveVert());
+    // returns true if countZeroes == 0 and no horizontal or vertical moves left
+}
+
+int Gameboard::countZeroes() {
     int countZeroes = 0;
     for (int r = 0; r < 4; r++) {
         for (int c = 0; c < 4; c++) {
@@ -177,25 +182,12 @@ bool Gameboard::isGameOver() {
                 countZeroes++;
         }
     }
-    cout << canMoveLeft() << " " << canMoveRight() << " " << canMoveVert() << endl;
-    return countZeroes == 0 && !(canMoveLeft() || canMoveRight() || canMoveVert());
-    // returns true if countZeroes == 0 and no horizontal or vertical moves left
-}
-
-void Gameboard::displayGame() {
-    cout << "CURRENT SCORE: " << _currentScore << '\t' << "BEST SCORE: " << _bestScore << endl;
-    for (int r = 0; r < 4; ++r) {
-        cout << setfill('-') << setw(20) << '-' << endl;
-        for (int c = 0; c < 4; ++c) {
-            cout << "| " << _board.at(r).at(c).getCurrentVal() << ' ';
-        } cout << '|' << endl;
-    }
-
+    return countZeroes;
 }
 
 void Gameboard::newTile() {
     bool isFull = true;
-    while (isFull) {
+    while (isFull && countZeroes() != 0) {
         int pos = rand() % 16;
         int rowNum = pos / 4; // change random int to row column form
         int colNum = pos % 4;
@@ -205,4 +197,12 @@ void Gameboard::newTile() {
             isFull = false; // exit loop
         }
     }
+}
+
+int Gameboard::getScore() {
+    return _currentScore;
+}
+
+vector<vector<Tile>> Gameboard::getBoard() {
+    return _board;
 }
