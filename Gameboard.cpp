@@ -134,10 +134,12 @@ void Gameboard::moveLeft() {
 }
 
 bool Gameboard::canMoveVert() {
-    rotateClockwise();
-    if (canMoveLeft() || canMoveRight()) {
-        rotateAntiClock();
-        return true;
+    for (int r = 1; r < 3; r++) {
+        for (int c = 0; c < 4; c++) {
+            if (_board.at(r).at(c).getCurrentVal() == _board.at(r + 1).at(c).getCurrentVal() || _board.at(r).at(c).getCurrentVal() == _board.at(r - 1).at(c).getCurrentVal()) {
+                return true;
+            }
+        }
     }
     return false;
 }
@@ -175,10 +177,9 @@ bool Gameboard::isGameOver() {
                 countZeroes++;
         }
     }
-
-    if (countZeroes == 0 && (canMoveLeft() || canMoveRight() || canMoveVert())) {
-        return true;
-    }
+    cout << canMoveLeft() << " " << canMoveRight() << " " << canMoveVert() << endl;
+    return countZeroes == 0 && !(canMoveLeft() || canMoveRight() || canMoveVert());
+    // returns true if countZeroes == 0 and no horizontal or vertical moves left
 }
 
 void Gameboard::displayGame() {
@@ -195,7 +196,7 @@ void Gameboard::displayGame() {
 void Gameboard::newTile() {
     bool isFull = true;
     while (isFull) {
-        int pos = rand() % 15;
+        int pos = rand() % 16;
         int rowNum = pos / 4; // change random int to row column form
         int colNum = pos % 4;
         if (_board.at(rowNum).at(colNum).getCurrentVal() == 0) {

@@ -4,7 +4,6 @@
 #include <fstream>
 
 #include "Gameboard.h"
-#include "Tile.h"
 
 using namespace std;
 
@@ -49,6 +48,7 @@ int main() {
         gb.newTile();
         gb.displayGame();
     }
+    cout << "game over!";
 
 
     return 0;
