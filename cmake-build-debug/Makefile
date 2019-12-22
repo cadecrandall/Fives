@@ -111,17 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Fives
+# Target rules for targets named sfml_template
 
 # Build rule for target.
-Fives: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Fives
-.PHONY : Fives
+sfml_template: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sfml_template
+.PHONY : sfml_template
 
 # fast build rule for target.
-Fives/fast:
-	$(MAKE) -f CMakeFiles/Fives.dir/build.make CMakeFiles/Fives.dir/build
-.PHONY : Fives/fast
+sfml_template/fast:
+	$(MAKE) -f CMakeFiles/sfml_template.dir/build.make CMakeFiles/sfml_template.dir/build
+.PHONY : sfml_template/fast
+
+Functions.o: Functions.cpp.o
+
+.PHONY : Functions.o
+
+# target to build an object file
+Functions.cpp.o:
+	$(MAKE) -f CMakeFiles/sfml_template.dir/build.make CMakeFiles/sfml_template.dir/Functions.cpp.o
+.PHONY : Functions.cpp.o
+
+Functions.i: Functions.cpp.i
+
+.PHONY : Functions.i
+
+# target to preprocess a source file
+Functions.cpp.i:
+	$(MAKE) -f CMakeFiles/sfml_template.dir/build.make CMakeFiles/sfml_template.dir/Functions.cpp.i
+.PHONY : Functions.cpp.i
+
+Functions.s: Functions.cpp.s
+
+.PHONY : Functions.s
+
+# target to generate assembly for a file
+Functions.cpp.s:
+	$(MAKE) -f CMakeFiles/sfml_template.dir/build.make CMakeFiles/sfml_template.dir/Functions.cpp.s
+.PHONY : Functions.cpp.s
 
 Gameboard.o: Gameboard.cpp.o
 
@@ -129,7 +156,7 @@ Gameboard.o: Gameboard.cpp.o
 
 # target to build an object file
 Gameboard.cpp.o:
-	$(MAKE) -f CMakeFiles/Fives.dir/build.make CMakeFiles/Fives.dir/Gameboard.cpp.o
+	$(MAKE) -f CMakeFiles/sfml_template.dir/build.make CMakeFiles/sfml_template.dir/Gameboard.cpp.o
 .PHONY : Gameboard.cpp.o
 
 Gameboard.i: Gameboard.cpp.i
@@ -138,7 +165,7 @@ Gameboard.i: Gameboard.cpp.i
 
 # target to preprocess a source file
 Gameboard.cpp.i:
-	$(MAKE) -f CMakeFiles/Fives.dir/build.make CMakeFiles/Fives.dir/Gameboard.cpp.i
+	$(MAKE) -f CMakeFiles/sfml_template.dir/build.make CMakeFiles/sfml_template.dir/Gameboard.cpp.i
 .PHONY : Gameboard.cpp.i
 
 Gameboard.s: Gameboard.cpp.s
@@ -147,7 +174,7 @@ Gameboard.s: Gameboard.cpp.s
 
 # target to generate assembly for a file
 Gameboard.cpp.s:
-	$(MAKE) -f CMakeFiles/Fives.dir/build.make CMakeFiles/Fives.dir/Gameboard.cpp.s
+	$(MAKE) -f CMakeFiles/sfml_template.dir/build.make CMakeFiles/sfml_template.dir/Gameboard.cpp.s
 .PHONY : Gameboard.cpp.s
 
 Tile.o: Tile.cpp.o
@@ -156,7 +183,7 @@ Tile.o: Tile.cpp.o
 
 # target to build an object file
 Tile.cpp.o:
-	$(MAKE) -f CMakeFiles/Fives.dir/build.make CMakeFiles/Fives.dir/Tile.cpp.o
+	$(MAKE) -f CMakeFiles/sfml_template.dir/build.make CMakeFiles/sfml_template.dir/Tile.cpp.o
 .PHONY : Tile.cpp.o
 
 Tile.i: Tile.cpp.i
@@ -165,7 +192,7 @@ Tile.i: Tile.cpp.i
 
 # target to preprocess a source file
 Tile.cpp.i:
-	$(MAKE) -f CMakeFiles/Fives.dir/build.make CMakeFiles/Fives.dir/Tile.cpp.i
+	$(MAKE) -f CMakeFiles/sfml_template.dir/build.make CMakeFiles/sfml_template.dir/Tile.cpp.i
 .PHONY : Tile.cpp.i
 
 Tile.s: Tile.cpp.s
@@ -174,7 +201,7 @@ Tile.s: Tile.cpp.s
 
 # target to generate assembly for a file
 Tile.cpp.s:
-	$(MAKE) -f CMakeFiles/Fives.dir/build.make CMakeFiles/Fives.dir/Tile.cpp.s
+	$(MAKE) -f CMakeFiles/sfml_template.dir/build.make CMakeFiles/sfml_template.dir/Tile.cpp.s
 .PHONY : Tile.cpp.s
 
 main.o: main.cpp.o
@@ -183,7 +210,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/Fives.dir/build.make CMakeFiles/Fives.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/sfml_template.dir/build.make CMakeFiles/sfml_template.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -192,7 +219,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/Fives.dir/build.make CMakeFiles/Fives.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/sfml_template.dir/build.make CMakeFiles/sfml_template.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -201,7 +228,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/Fives.dir/build.make CMakeFiles/Fives.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/sfml_template.dir/build.make CMakeFiles/sfml_template.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -212,7 +239,10 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... Fives"
+	@echo "... sfml_template"
+	@echo "... Functions.o"
+	@echo "... Functions.i"
+	@echo "... Functions.s"
 	@echo "... Gameboard.o"
 	@echo "... Gameboard.i"
 	@echo "... Gameboard.s"

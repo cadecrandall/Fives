@@ -4,7 +4,6 @@
 
 #include "Tile.h"
 #include <cstdlib>
-#include <iostream>
 using namespace std;
 
 Tile::Tile() {      // tile default constructor
@@ -14,11 +13,6 @@ Tile::Tile() {      // tile default constructor
 
 Tile::Tile(int val) {       // tile constructor that can have a predetermined value (usually 0 for removing zeroes in merge moves)
     _currentValue = val;
-
-}
-
-void Tile::tileColor() {
-
 }
 
 int Tile::getCurrentVal() {

@@ -1,10 +1,9 @@
 //
-// Created by Cade Crandall on 11/17/19.
+// Created by Cade Crandall on 11/25/19.
 //
 
-#ifndef FIVES_GAMEBOARD_H
-#define FIVES_GAMEBOARD_H
-
+#ifndef SFML_TEMPLATE_GAMEBOARD_H
+#define SFML_TEMPLATE_GAMEBOARD_H
 
 #include <vector>
 #include "Tile.h"
@@ -22,15 +21,16 @@ public:
     bool canMoveRight();
     bool canMoveLeft();
     bool isGameOver();
-    void displayGame();
+    int countZeroes();
     void newTile();
+    int getScore();
+    vector<vector<Tile>> getBoard();
+
 private:
     vector<vector<Tile>> _board; //make a vector of vectors of Tiles
     int _currentScore = 0;
-    int _bestScore = -1;
     void rotateClockwise();
     void rotateAntiClock();
 };
 
-
-#endif //FIVES_GAMEBOARD_H
+#endif //SFML_TEMPLATE_GAMEBOARD_H
