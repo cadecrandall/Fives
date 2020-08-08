@@ -32,21 +32,20 @@ public:
 
     bool isGameOver();
 
-    int countZeroes();
+    int countEmptyTiles();
 
     void newTile();
 
     int getScore();
 
-    vector<vector<Tile>> getBoard();
-
 private:
-    vector<vector<Tile>> _board; //make a vector of vectors of Tiles
+    vector<vector<Tile>> _board;
+
     int _currentScore = 0;
 
     void rotateClockwise();
 
-    void rotateAntiClock();
+    void rotateAntiClockwise();
 };
 
 #endif //SFML_TEMPLATE_GAMEBOARD_H

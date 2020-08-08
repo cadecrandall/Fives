@@ -8,7 +8,7 @@
 using namespace std;
 
 Tile::Tile() {
-    _currentValue = ((rand() / static_cast<double>(RAND_MAX)) < 0.9 ? 5 : 25);
+    _currentValue = 0;
 }
 
 Tile::Tile(int val) {
@@ -23,6 +23,10 @@ void Tile::setCurrentVal(int newVal) {
     _currentValue = newVal;
 }
 
-void Tile::setCurrentVal() {        // if called without argument, multiplies current Tile value by 5
-    _currentValue *= 5;
+void Tile::increment() {
+    _currentValue *= 2;
+}
+
+void Tile::setRandomValue() {
+    _currentValue = ((rand() / static_cast<double>(RAND_MAX)) < 0.9 ? 2 : 4);
 }

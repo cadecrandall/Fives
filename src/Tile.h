@@ -15,7 +15,9 @@ public:
 
     void setCurrentVal(int newVal);
 
-    void setCurrentVal();
+    void increment();
+
+    void setRandomValue();
 
 private:
     int _currentValue = 0;
