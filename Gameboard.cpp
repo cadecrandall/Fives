@@ -206,3 +206,12 @@ int Gameboard::getScore() {
 vector<vector<Tile>> Gameboard::getBoard() {
     return _board;
 }
+
+void Gameboard::printGame() {
+    for (int r = 0; r < 4; ++r) {
+        cout << setfill('-') << setw(20) << '-' << endl;
+        for (int c = 0; c < 4; ++c) {
+            cout << "| " << _board.at(r).at(c).getCurrentVal() << ' ';
+        } cout << '|' << endl;
+    }
+}

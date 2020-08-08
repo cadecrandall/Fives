@@ -16,6 +16,7 @@ public:
     void moveDown(); // moves tiles on the gameboard down and returns TRUE if a move occurs
     void moveRight(); // moves tiles on the gameboard right and returns TRUE if a move occurs
     void moveLeft(); // moves tiles on the gameboard left and returns TRUE if a move occurs
+    void printGame();
 
     bool canMoveVert();
     bool canMoveRight();
