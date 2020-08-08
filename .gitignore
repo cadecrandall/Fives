@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# other files
+cmake-build-debug/
+.idea/
