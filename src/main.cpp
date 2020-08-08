@@ -1,6 +1,6 @@
-#include <iostream>                             // for standard input/output
+#include <iostream>
 
-using namespace std;                            // using the standard namespace
+using namespace std;
 
 #include <cstdlib>
 #include <ctime>
@@ -8,10 +8,6 @@ using namespace std;                            // using the standard namespace
 
 #include "Gameboard.h"
 #include "Functions.h"
-
-const int NUM_ROWS = 4;
-const int NUM_COLS = 4;
-const int NUM_COLORS = 12;
 
 int main() {
 
