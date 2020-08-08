@@ -7,11 +7,13 @@
 
 #include <vector>
 #include "Tile.h"
+
 using namespace std;
 
 class Gameboard {
 public:
     Gameboard();
+
     void moveUp();  // moves tiles on the gameboard up and returns TRUE if a move occurs
     void moveDown(); // moves tiles on the gameboard down and returns TRUE if a move occurs
     void moveRight(); // moves tiles on the gameboard right and returns TRUE if a move occurs
@@ -19,18 +21,27 @@ public:
     void printGame();
 
     bool canMoveVert();
+
     bool canMoveRight();
+
     bool canMoveLeft();
+
     bool isGameOver();
+
     int countZeroes();
+
     void newTile();
+
     int getScore();
+
     vector<vector<Tile>> getBoard();
 
 private:
     vector<vector<Tile>> _board; //make a vector of vectors of Tiles
     int _currentScore = 0;
+
     void rotateClockwise();
+
     void rotateAntiClock();
 };
 

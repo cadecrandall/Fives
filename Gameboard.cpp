@@ -43,7 +43,7 @@ void Gameboard::rotateClockwise() {
     Gameboard newBoard; // create a temporary board
     for (int r = 0; r < 4; r++) {
         for (int c = 0; c < 4; c++) {
-            newBoard._board.at(c).at(3-r).setCurrentVal(_board.at(r).at(c).getCurrentVal());
+            newBoard._board.at(c).at(3 - r).setCurrentVal(_board.at(r).at(c).getCurrentVal());
             // rotates the board clockwise
         }
     }
@@ -54,7 +54,7 @@ void Gameboard::rotateAntiClock() {
     Gameboard newBoard; // create a temporary board
     for (int r = 0; r < 4; r++) {
         for (int c = 0; c < 4; c++) {
-            newBoard._board.at(r).at(c).setCurrentVal(_board.at(c).at(3-r).getCurrentVal());
+            newBoard._board.at(r).at(c).setCurrentVal(_board.at(c).at(3 - r).getCurrentVal());
             // rotates the board clockwise
         }
     }
@@ -78,11 +78,11 @@ void Gameboard::moveRight() {
 
     for (int r = 0; r < 4; r++) {
         for (int c = 3; c > 0; c--) {
-            if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c-1).getCurrentVal()) {
+            if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c - 1).getCurrentVal()) {
                 // if tiles are equal (horizontally), merge
                 _board.at(r).at(c).setCurrentVal(); // multiplies Tile by 5
                 _currentScore += _board.at(r).at(c).getCurrentVal();
-                _board.at(r).at(c-1).setCurrentVal(0);  // sets lower tile to 0
+                _board.at(r).at(c - 1).setCurrentVal(0);  // sets lower tile to 0
             }
         }
     }
@@ -114,11 +114,11 @@ void Gameboard::moveLeft() {
 
     for (int r = 0; r < 4; r++) {
         for (int c = 0; c < 3; c++) {
-            if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c+1).getCurrentVal()) {
+            if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c + 1).getCurrentVal()) {
                 // if tiles are equal (horizontally), merge
                 _board.at(r).at(c).setCurrentVal(); // multiplies Tile by 5
                 _currentScore += _board.at(r).at(c).getCurrentVal();
-                _board.at(r).at(c+1).setCurrentVal(0);  // sets lower tile to 0
+                _board.at(r).at(c + 1).setCurrentVal(0);  // sets lower tile to 0
             }
         }
     }
@@ -136,7 +136,8 @@ void Gameboard::moveLeft() {
 bool Gameboard::canMoveVert() {
     for (int r = 1; r < 3; r++) {
         for (int c = 0; c < 4; c++) {
-            if (_board.at(r).at(c).getCurrentVal() == _board.at(r + 1).at(c).getCurrentVal() || _board.at(r).at(c).getCurrentVal() == _board.at(r - 1).at(c).getCurrentVal()) {
+            if (_board.at(r).at(c).getCurrentVal() == _board.at(r + 1).at(c).getCurrentVal() ||
+                _board.at(r).at(c).getCurrentVal() == _board.at(r - 1).at(c).getCurrentVal()) {
                 return true;
             }
         }
@@ -149,7 +150,7 @@ bool Gameboard::canMoveRight() {
     // function checks to see if anything matches and is movable when the board is full
     for (int r = 0; r < 4; r++) {
         for (int c = 3; c > 0; c--) {
-            if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c-1).getCurrentVal()) {
+            if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c - 1).getCurrentVal()) {
                 return true;
             }
         }
@@ -160,7 +161,7 @@ bool Gameboard::canMoveRight() {
 bool Gameboard::canMoveLeft() {
     for (int r = 0; r < 4; r++) {
         for (int c = 0; c < 3; c++) {
-            if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c+1).getCurrentVal()) {
+            if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c + 1).getCurrentVal()) {
                 // if tiles are equal (horizontally), return true
                 return true;
             }
@@ -212,6 +213,7 @@ void Gameboard::printGame() {
         cout << setfill('-') << setw(20) << '-' << endl;
         for (int c = 0; c < 4; ++c) {
             cout << "| " << _board.at(r).at(c).getCurrentVal() << ' ';
-        } cout << '|' << endl;
+        }
+        cout << '|' << endl;
     }
 }

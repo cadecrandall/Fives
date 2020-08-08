@@ -4,14 +4,14 @@
 
 #include "Tile.h"
 #include <cstdlib>
+
 using namespace std;
 
-Tile::Tile() {      // tile default constructor
-    // generate a random double between 0.0 and 1.0
+Tile::Tile() {
     _currentValue = ((rand() / static_cast<double>(RAND_MAX)) < 0.9 ? 5 : 25);
 }
 
-Tile::Tile(int val) {       // tile constructor that can have a predetermined value (usually 0 for removing zeroes in merge moves)
+Tile::Tile(int val) {
     _currentValue = val;
 }
 

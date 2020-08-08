@@ -37,5 +37,6 @@ void makePlayerMove(Gameboard &gb, char move) {
         default:
             cerr << "Invalid move. Use WASD to move the board" << endl;
             return;
-    } gb.newTile();
+    }
+    gb.newTile();
 }

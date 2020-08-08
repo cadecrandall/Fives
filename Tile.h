@@ -10,9 +10,13 @@ class Tile {
 public:
     Tile();         // default constructor
     Tile(int val);
+
     int getCurrentVal();
+
     void setCurrentVal(int newVal);
+
     void setCurrentVal();
+
 private:
     int _currentValue = 0;
 };

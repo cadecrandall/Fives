@@ -4,6 +4,7 @@
 
 #ifndef SFML_TEMPLATE_FUNCTIONS_H
 #define SFML_TEMPLATE_FUNCTIONS_H
+
 #include <vector>
 #include <iostream>
 #include "Gameboard.h"

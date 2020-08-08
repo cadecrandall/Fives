@@ -1,4 +1,5 @@
 #include <iostream>                             // for standard input/output
+
 using namespace std;                            // using the standard namespace
 
 #include <cstdlib>
@@ -18,7 +19,7 @@ int main() {
     rand();
 
     ifstream leaderboard("leaderboard.txt");
-    if ( leaderboard.fail() ) {
+    if (leaderboard.fail()) {
         cerr << "Error opening leaderboard file";
         return -1;
     }
@@ -51,7 +52,7 @@ int main() {
     getline(cin, currentUserName);
 
     ofstream fout("leaderboard.txt", ios_base::app);
-    if ( fout.fail() ) {
+    if (fout.fail()) {
         cerr << "Error opening leaderboard file";
         return -1;
     }
