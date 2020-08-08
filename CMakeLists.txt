@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
-project(sfml_template)
+project(Fives)
 
 include_directories(include)
 link_directories(lib)
