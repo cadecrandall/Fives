@@ -26,9 +26,7 @@ public:
 
     bool canMoveVert();
 
-    bool canMoveRight();
-
-    bool canMoveLeft();
+    bool canMoveHorizontally();
 
     bool isGameOver();
 
@@ -46,6 +44,12 @@ private:
     void rotateClockwise();
 
     void rotateAntiClockwise();
+
+    void collapseRight();
+
+    void collapseLeft();
+
+    bool isBoardFull();
 };
 
 #endif //SFML_TEMPLATE_GAMEBOARD_H
