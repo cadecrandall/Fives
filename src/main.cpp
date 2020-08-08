@@ -22,18 +22,18 @@ int main() {
 
     // reads in the leaderboard file
     vector<int> highScores;
-    vector<string> userNames;
-    string userName;
-    int highScore;
+    vector<string> usernames;
+    string username;
+    int userScore;
     while (!leaderboard.eof()) {
-        leaderboard >> userName;
-        leaderboard >> highScore;
-        userNames.push_back(userName);
-        highScores.push_back(highScore);
+        leaderboard >> username;
+        leaderboard >> userScore;
+        usernames.push_back(username);
+        highScores.push_back(userScore);
     }
     leaderboard.close();
 
-    int bestScore = highScores.at(determineBestScore(highScores));
+    int bestScore = getBestScore(highScores);
 
     Gameboard gb; // initializes the gameboard gb using default constructor
     char move;
