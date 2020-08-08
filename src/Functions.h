@@ -11,7 +11,7 @@
 
 using namespace std;
 
-int determineBestScore(std::vector<int> scores);        // returns the index of the best score in the leaderboard
+int getBestScore(std::vector<int> scores);
 void makePlayerMove(Gameboard &gb, char move);
 
 #endif //SFML_TEMPLATE_FUNCTIONS_H
