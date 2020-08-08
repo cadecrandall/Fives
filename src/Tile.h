@@ -2,8 +2,8 @@
 // Created by Cade Crandall on 11/25/19.
 //
 
-#ifndef SFML_TEMPLATE_TILE_H
-#define SFML_TEMPLATE_TILE_H
+#ifndef FIVES_TILE_H
+#define FIVES_TILE_H
 
 
 class Tile {
@@ -23,4 +23,4 @@ private:
     int _currentValue = 0;
 };
 
-#endif //SFML_TEMPLATE_TILE_H
+#endif //FIVES_TILE_H

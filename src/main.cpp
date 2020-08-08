@@ -20,7 +20,6 @@ int main() {
         return -1;
     }
 
-    // reads in the leaderboard file
     vector<int> highScores;
     vector<string> usernames;
     string username;
@@ -35,7 +34,7 @@ int main() {
 
     int bestScore = getBestScore(highScores);
 
-    Gameboard gb; // initializes the gameboard gb using default constructor
+    Gameboard gb;
     char move;
     while (!gb.isGameOver()) {
         cin >> move;
