@@ -53,7 +53,7 @@ int main() {
         return -1;
     }
 
-    fout << currentUserName << ' ' << gb.getScore() << endl;        // appends the final score to file
+    fout << currentUserName << ' ' << gb.getScore() << endl;
     fout.close();
 
     return 0;

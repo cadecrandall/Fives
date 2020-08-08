@@ -14,10 +14,14 @@ class Gameboard {
 public:
     Gameboard();
 
-    void moveUp();  // moves tiles on the gameboard up and returns TRUE if a move occurs
-    void moveDown(); // moves tiles on the gameboard down and returns TRUE if a move occurs
-    void moveRight(); // moves tiles on the gameboard right and returns TRUE if a move occurs
-    void moveLeft(); // moves tiles on the gameboard left and returns TRUE if a move occurs
+    void moveUp();
+
+    void moveDown();
+
+    void moveRight();
+
+    void moveLeft();
+
     void printGame();
 
     bool canMoveVert();
