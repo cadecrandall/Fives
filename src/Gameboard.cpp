@@ -21,7 +21,7 @@ Gameboard::Gameboard() {
             _board.at(r).push_back(tile);
         }
     }
-    newTile();      // creates two random tiles to start game
+    newTile();
     newTile();
 }
 
@@ -189,12 +189,14 @@ int Gameboard::getScore() {
     return _currentScore;
 }
 
-void Gameboard::printGame() {
+void Gameboard::printGameState() {
+    cout << setfill(' ') << setw(34) << left << "SCORE : " << left << getScore() << endl;
+    cout << setfill('_') << setw(34) << ' ' << endl;
     for (int r = 0; r < 4; ++r) {
-        cout << setfill('-') << setw(20) << '-' << endl;
         for (int c = 0; c < 4; ++c) {
-            cout << "| " << _board.at(r).at(c).getCurrentVal() << ' ';
+            cout << "| " << left << setfill(' ') << setw(6) << _board.at(r).at(c).getCurrentVal();
         }
         cout << '|' << endl;
+        cout << setfill('_') << setw(34) << ' ' << endl;
     }
 }

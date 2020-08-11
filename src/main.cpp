@@ -17,13 +17,12 @@ int main() {
     Leaderboard leaderboard;
 
     leaderboard.readLeaderboard();
-    cout << leaderboard.getHighScore().first;
 
     char move;
     while (!gb.isGameOver()) {
         cin >> move;
         makePlayerMove(gb, move);
-        gb.printGame();
+        gb.printGameState();
     }
 
     leaderboard.addPlayer(gb.getScore());
