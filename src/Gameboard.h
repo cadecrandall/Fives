@@ -2,11 +2,12 @@
 // Created by Cade Crandall on 11/25/19.
 //
 
-#ifndef SFML_TEMPLATE_GAMEBOARD_H
-#define SFML_TEMPLATE_GAMEBOARD_H
+#ifndef FIVES_GAMEBOARD_H
+#define FIVES_GAMEBOARD_H
 
 #include <vector>
 #include "Tile.h"
+#include "Leaderboard.h"
 
 using namespace std;
 
@@ -22,13 +23,11 @@ public:
 
     void moveLeft();
 
-    void printGame();
+    void printGameState(Leaderboard&);
 
     bool canMoveVert();
 
-    bool canMoveRight();
-
-    bool canMoveLeft();
+    bool canMoveHorizontally();
 
     bool isGameOver();
 
@@ -46,6 +45,12 @@ private:
     void rotateClockwise();
 
     void rotateAntiClockwise();
+
+    void collapseRight();
+
+    void collapseLeft();
+
+    bool isBoardFull();
 };
 
-#endif //SFML_TEMPLATE_GAMEBOARD_H
+#endif //FIVES_GAMEBOARD_H

@@ -13,7 +13,7 @@
 using namespace std;
 
 Gameboard::Gameboard() {
-    for (int r = 0; r < 4; ++r) {   // creates an empty 2d vector
+    for (int r = 0; r < 4; ++r) {
         vector<Tile> row;
         _board.push_back(row);
         for (int c = 0; c < 4; ++c) {
@@ -21,7 +21,7 @@ Gameboard::Gameboard() {
             _board.at(r).push_back(tile);
         }
     }
-    newTile();      // creates two random tiles to start game
+    newTile();
     newTile();
 }
 
@@ -59,20 +59,11 @@ void Gameboard::rotateAntiClockwise() {
 
 void Gameboard::moveRight() {
     /*
-     * 1. remove blanks from each row (so everything will be touching)
-     * 2. merge tiles right
-     * 3. remove blanks from each row created from merge
+     * 1. Collapse vector to the right (remove blanks)
+     * 2. Merge tiles right
+     * 3. Collapse vector to the right following merge
      */
-
-    for (int r = 0; r < 4; r++) {
-        for (int c = 0; c < 4; c++) {      // has to work from left side to avoid double checking
-            if (_board.at(r).at(c).getCurrentVal() == 0) {
-                _board.at(r).erase(_board.at(r).begin() + c);       // erases Tiles that hold the value 0
-                _board.at(r).insert(_board.at(r).begin(), Tile());
-            }
-        }
-    }
-
+    collapseRight();
     for (int r = 0; r < 4; r++) {
         for (int c = 3; c > 0; c--) {
             if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c - 1).getCurrentVal()) {
@@ -83,33 +74,17 @@ void Gameboard::moveRight() {
             }
         }
     }
-
-    for (int r = 0; r < 4; r++) {
-        for (int c = 0; c < 4; c++) {      // has to work from left side to avoid double checking
-            if (_board.at(r).at(c).getCurrentVal() == 0) {
-                _board.at(r).erase(_board.at(r).begin() + c);       // erases Tiles that hold the value 0
-                _board.at(r).insert(_board.at(r).begin(), Tile());
-            }
-        }
-    }
+    collapseRight();
 }
 
 void Gameboard::moveLeft() {
     /*
-     * 1. remove blanks from each row (so everything will be touching)
-     * 2. merge tiles left
-     * 3. remove blanks from each row created from merge
+     * 1. Collapse vector to the left (remove blanks)
+     * 2. Merge tiles left
+     * 3. Collapse vector to the left following merge
      */
 
-    for (int r = 0; r < 4; r++) {
-        for (int c = 3; c >= 0; c--) {      // has to work from right side to avoid double checking
-            if (_board.at(r).at(c).getCurrentVal() == 0) {
-                _board.at(r).erase(_board.at(r).begin() + c);       // erases Tiles that hold the value 0
-                _board.at(r).push_back(Tile()); // inserts a new tile at the right side of value 0
-            }
-        }
-    }
-
+    collapseLeft();
     for (int r = 0; r < 4; r++) {
         for (int c = 0; c < 3; c++) {
             if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c + 1).getCurrentVal()) {
@@ -120,7 +95,29 @@ void Gameboard::moveLeft() {
             }
         }
     }
+    collapseLeft();
+}
 
+void Gameboard::collapseRight() {
+    /**
+     * Removes blank spaces in each vector row to the right
+     * e.g.:    [2, 0, 2, 0] --> [0, 0, 2, 2]
+     */
+    for (int r = 0; r < 4; r++) {
+        for (int c = 0; c < 4; c++) {      // has to work from left side to avoid double checking
+            if (_board.at(r).at(c).getCurrentVal() == 0) {
+                _board.at(r).erase(_board.at(r).begin() + c);       // erases Tiles that hold the value 0
+                _board.at(r).insert(_board.at(r).begin(), Tile());
+            }
+        }
+    }
+}
+
+void Gameboard::collapseLeft() {
+    /**
+     * Removes blank spaces in each vector row to the left
+     * e.g.:    [2, 0, 2, 0] --> [2, 2, 0, 0]
+     */
     for (int r = 0; r < 4; r++) {
         for (int c = 3; c >= 0; c--) {      // has to work from right side to avoid double checking
             if (_board.at(r).at(c).getCurrentVal() == 0) {
@@ -144,7 +141,7 @@ bool Gameboard::canMoveVert() {
 }
 
 
-bool Gameboard::canMoveRight() {
+bool Gameboard::canMoveHorizontally() {
     for (int r = 0; r < 4; r++) {
         for (int c = 3; c > 0; c--) {
             if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c - 1).getCurrentVal()) {
@@ -155,20 +152,9 @@ bool Gameboard::canMoveRight() {
     return false;
 }
 
-bool Gameboard::canMoveLeft() {
-    for (int r = 0; r < 4; r++) {
-        for (int c = 0; c < 3; c++) {
-            if (_board.at(r).at(c).getCurrentVal() == _board.at(r).at(c + 1).getCurrentVal()) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 bool Gameboard::isGameOver() {
-    return countEmptyTiles() == 0 && !(canMoveLeft() || canMoveRight() || canMoveVert());
-    // returns true if countEmptyTiles == 0 and no horizontal or vertical moves left
+    // Gameboard must be full without a horizontal or vertical move
+    return isBoardFull() && !(canMoveHorizontally() || canMoveVert());
 }
 
 int Gameboard::countEmptyTiles() {
@@ -180,6 +166,10 @@ int Gameboard::countEmptyTiles() {
         }
     }
     return numZeroes;
+}
+
+bool Gameboard::isBoardFull() {
+    return countEmptyTiles() == 0;
 }
 
 void Gameboard::newTile() {
@@ -199,12 +189,15 @@ int Gameboard::getScore() {
     return _currentScore;
 }
 
-void Gameboard::printGame() {
+void Gameboard::printGameState(Leaderboard &lb) {
+    cout << left << setfill(' ') << setw(17) << "SCORE : " + to_string(getScore());
+    cout << right << setfill(' ') << setw(17) << "HIGHSCORE : " + to_string(lb.getHighScore()) << endl;
+    cout << setfill('_') << setw(34) << ' ' << endl;
     for (int r = 0; r < 4; ++r) {
-        cout << setfill('-') << setw(20) << '-' << endl;
         for (int c = 0; c < 4; ++c) {
-            cout << "| " << _board.at(r).at(c).getCurrentVal() << ' ';
+            cout << "| " << left << setfill(' ') << setw(6) << _board.at(r).at(c).getCurrentVal();
         }
         cout << '|' << endl;
+        cout << setfill('_') << setw(34) << ' ' << endl;
     }
 }
