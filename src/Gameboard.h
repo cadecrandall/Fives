@@ -23,7 +23,7 @@ public:
 
     void moveLeft();
 
-    void printGameState();
+    void printGameState(Leaderboard&);
 
     bool canMoveVert();
 

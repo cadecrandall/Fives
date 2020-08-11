@@ -14,16 +14,22 @@ public:
 
     Leaderboard(std::string file);
 
-    std::pair<std::string, int> getHighScore();
+    void determineHighScore();
 
     int addPlayer(int);
 
     int readLeaderboard();
 
+    int getHighScore();
+
+    std::string getHighScoreName();
+
 private:
     std::unordered_map<std::string, int> _leaderboard;
 
     std::string _filepath;
+
+    std::pair<std::string, int> _highScorer;
 };
 
 

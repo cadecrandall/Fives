@@ -189,8 +189,9 @@ int Gameboard::getScore() {
     return _currentScore;
 }
 
-void Gameboard::printGameState() {
-    cout << setfill(' ') << setw(34) << left << "SCORE : " << left << getScore() << endl;
+void Gameboard::printGameState(Leaderboard &lb) {
+    cout << left << setfill(' ') << setw(17) << "SCORE : " + to_string(getScore());
+    cout << right << setfill(' ') << setw(17) << "HIGHSCORE : " + to_string(lb.getHighScore()) << endl;
     cout << setfill('_') << setw(34) << ' ' << endl;
     for (int r = 0; r < 4; ++r) {
         for (int c = 0; c < 4; ++c) {

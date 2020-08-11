@@ -14,18 +14,18 @@ int main() {
     rand();
 
     Gameboard gb;
-    Leaderboard leaderboard;
+    Leaderboard lb;
 
-    leaderboard.readLeaderboard();
+    lb.readLeaderboard();
 
     char move;
     while (!gb.isGameOver()) {
         cin >> move;
         makePlayerMove(gb, move);
-        gb.printGameState();
+        gb.printGameState(lb);
     }
 
-    leaderboard.addPlayer(gb.getScore());
+    lb.addPlayer(gb.getScore());
 
     return 0;
 }

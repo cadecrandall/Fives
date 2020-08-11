@@ -18,13 +18,13 @@ Leaderboard::Leaderboard(std::string file) {
 }
 
 
-std::pair<std::string, int> Leaderboard::getHighScore() {
+void Leaderboard::determineHighScore() {
     std::pair<std::string, int> winner = make_pair(
             _leaderboard.begin()->first, _leaderboard.begin()->second);
     for (std::pair<std::string, int> p : _leaderboard) {
         winner = (p.second > winner.second ? p : winner);
     }
-    return winner;
+    _highScorer = winner;
 }
 
 int Leaderboard::readLeaderboard() {
@@ -41,6 +41,8 @@ int Leaderboard::readLeaderboard() {
         _leaderboard.insert(make_pair(username, score));
     }
     fin.close();
+
+    determineHighScore();
 
     return 0;
 }
@@ -62,4 +64,11 @@ int Leaderboard::addPlayer(int score) {
     return 0;
 }
 
+int Leaderboard::getHighScore() {
+    return _highScorer.second;
+}
+
+std::string Leaderboard::getHighScoreName() {
+    return _highScorer.first;
+}
 
