@@ -7,6 +7,7 @@
 
 #include <vector>
 #include "Tile.h"
+#include "Leaderboard.h"
 
 using namespace std;
 

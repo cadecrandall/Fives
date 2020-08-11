@@ -11,7 +11,6 @@
 
 using namespace std;
 
-int getBestScore(std::vector<int> scores);
 void makePlayerMove(Gameboard &gb, char move);
 
 #endif //FIVES_FUNCTIONS_H

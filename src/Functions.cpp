@@ -8,14 +8,6 @@
 
 using namespace std;
 
-int getBestScore(std::vector<int> scores) {
-    int bestIdx = 0;
-    for (int i = 0; i < scores.size(); i++) {
-        bestIdx = (scores.at(i) > scores.at(bestIdx) ? i : bestIdx);
-    }
-    return scores.at(bestIdx);
-}
-
 void makePlayerMove(Gameboard &gb, char move) {
     switch (move) {
         case 'W':
