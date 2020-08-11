@@ -47,7 +47,7 @@ int Leaderboard::readLeaderboard() {
     return 0;
 }
 
-int Leaderboard::addPlayer(int score) {
+int Leaderboard::writeGameToBoard(int score) {
     std::cout << "What is your username for the leaderboard?" << std::endl;
     std::string currentUserName;
     std::cin >> currentUserName;

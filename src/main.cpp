@@ -25,7 +25,7 @@ int main() {
         gb.printGameState(lb);
     }
 
-    lb.addPlayer(gb.getScore());
+    lb.writeGameToBoard(gb.getScore());
 
     return 0;
 }

@@ -16,7 +16,7 @@ public:
 
     void determineHighScore();
 
-    int addPlayer(int);
+    int writeGameToBoard(int);
 
     int readLeaderboard();
 
