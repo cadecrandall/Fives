@@ -25,6 +25,9 @@ Gameboard::Gameboard() {
     newTile();
 }
 
+Gameboard::Gameboard(int board[4][4]) {
+
+}
 void Gameboard::moveUp() {
     rotateClockwise();
     moveRight();

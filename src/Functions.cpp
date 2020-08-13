@@ -32,3 +32,7 @@ void makePlayerMove(Gameboard &gb, char move) {
     }
     gb.newTile();
 }
+
+int return2() {
+    return 2;
+}

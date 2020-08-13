@@ -15,6 +15,9 @@ class Gameboard {
 public:
     Gameboard();
 
+    Gameboard(int[4][4]);
+
+
     void moveUp();
 
     void moveDown();

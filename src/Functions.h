@@ -13,4 +13,6 @@ using namespace std;
 
 void makePlayerMove(Gameboard &gb, char move);
 
+int return2();
+
 #endif //FIVES_FUNCTIONS_H
